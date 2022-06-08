@@ -1,0 +1,38 @@
+using System;
+
+namespace ISBN;
+
+class Programm
+{
+    public static void Main(string[] args)
+    {
+        string eingabe;
+
+        Console.WriteLine("ISBN: Internationale Standard Buch Nummer");
+        Console.Write("Eingabe der 9-stelligen ISBN-Nummer: ");
+        eingabe = Console.ReadLine();
+
+        while (eingabe.Length > 9)
+        {
+            Console.WriteLine("Du kannst nicht richtig zählen! Gibt die Zahl erneut ein.");
+
+            Console.Write("Eingabe der 9-stelligen ISBN-Nummer: ");
+            eingabe = Console.ReadLine();
+        } 
+
+        int[] ISBN = new int[9];
+        int rechnung = 0;
+
+        for (int i = 0; i < ISBN.Length; i++)
+        {
+            ISBN[i] = Convert.ToInt32(eingabe.Substring(i, 1));
+            //Console.WriteLine(ISBN[i]); //Test-Ausgabe der Zellen im Array
+        }
+        for (int i = 1; i < ISBN.Length; i++)
+        {
+            rechnung += i * ISBN[i];
+        }
+        rechnung = rechnung %= 11;
+        Console.WriteLine("{0}",rechnung);
+    }
+}
